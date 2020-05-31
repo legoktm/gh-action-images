@@ -15,5 +15,5 @@ jobs:
         python-version: 3.8
     - name: Build
       run: |
-        docker login docker.pkg.github.com -u ${{ github.actor }} -p ${{ secrets.GITHUB_TOKEN }}
+        docker login -u legoktm -p ${{ secrets.DOCKER_HUB_ACCESS }}
         ./build.py --push

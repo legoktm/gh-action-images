@@ -23,12 +23,11 @@ import subprocess
 import sys
 
 DOCKER = '/usr/bin/docker'
-GITHUB_REPOSITORY = os.getenv('GITHUB_REPOSITORY', 'local')
 root = Path('images')
 
 
 def image_name(image, tag):
-    return f'docker.pkg.github.com/{GITHUB_REPOSITORY}/{image}:{tag}'
+    return f'legoktm/gh-action-{image}:{tag}'
 
 
 def build(images):
