@@ -20,6 +20,7 @@ from collections import defaultdict
 import os
 from pathlib import Path
 import subprocess
+import sys
 
 DOCKER = '/usr/bin/podman' if os.path.exists('/usr/bin/podman') else '/usr/bin/docker'
 GITHUB_REPOSITORY = os.getenv('GITHUB_REPOSITORY', 'local')
@@ -36,6 +37,8 @@ def build(images):
             name = image_name(image, tag)
             print(f'Building {name}')
             subprocess.check_call([DOCKER, 'build', (root / image / tag).resolve(), f'--tag={name}'])
+            if '--push' in sys.argv:
+                subprocess.check_call([DOCKER, 'push', name])
 
 
 def main():
