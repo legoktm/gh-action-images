@@ -22,13 +22,13 @@ from pathlib import Path
 import subprocess
 import sys
 
-DOCKER = '/usr/bin/podman' if os.path.exists('/usr/bin/podman') else '/usr/bin/docker'
+DOCKER = '/usr/bin/docker'
 GITHUB_REPOSITORY = os.getenv('GITHUB_REPOSITORY', 'local')
 root = Path('images')
 
 
 def image_name(image, tag):
-    return f'docker.pkg.github.com/{GITHUB_REPOSITORY}/gh-action-{image}:{tag}'
+    return f'docker.pkg.github.com/{GITHUB_REPOSITORY}/{image}:{tag}'
 
 
 def build(images):
