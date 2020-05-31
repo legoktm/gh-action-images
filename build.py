@@ -28,7 +28,7 @@ root = Path('images')
 
 
 def image_name(image, tag):
-    return f'docker.pkg.github.com/{GITHUB_REPOSITORY}/{image}:{tag}'
+    return f'docker.pkg.github.com/{GITHUB_REPOSITORY}/gh-action-{image}:{tag}'
 
 
 def build(images):
