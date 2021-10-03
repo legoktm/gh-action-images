@@ -38,6 +38,7 @@ def build(images):
             subprocess.check_call([DOCKER, 'build', (root / image / tag).resolve(), f'--tag={name}'])
             if '--push' in sys.argv:
                 subprocess.check_call([DOCKER, 'push', name])
+                subprocess.check_call([DOCKER, 'rmi', name])
 
 
 def main():
