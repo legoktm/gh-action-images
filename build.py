@@ -17,7 +17,6 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 from collections import defaultdict
-import os
 from pathlib import Path
 import subprocess
 import sys
