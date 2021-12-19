@@ -30,4 +30,4 @@ jobs:
     - name: Build
       run: |
         docker login -u legoktm -p ${{ secrets.DOCKER_HUB_ACCESS }}
-        ./build.py ${{ matrix.name }}$ --push
+        ./build.py ${{ matrix.name }} --push
