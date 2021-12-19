@@ -16,6 +16,7 @@ jobs:
           - "build-deb:debian-unstable"
           - "build-deb:debian-bullseye"
           - "build-deb:debian-buster"
+          - "build-deb:ubuntu-jammy"
           - "build-deb:ubuntu-impish"
           - "build-deb:ubuntu-hirsute"
           - "build-deb:ubuntu-focal"
