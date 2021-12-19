@@ -29,28 +29,14 @@ def image_name(image, tag):
     return f'legoktm/gh-action-{image}:{tag}'
 
 
-def build(images):
-    for image, tags in sorted(images.items()):
-        for tag in sorted(tags):
-            name = image_name(image, tag)
-            print(f'Building {name}')
-            subprocess.check_call([DOCKER, 'build', (root / image / tag).resolve(), f'--tag={name}'])
-            if '--push' in sys.argv:
-                subprocess.check_call([DOCKER, 'push', name])
-                subprocess.check_call([DOCKER, 'rmi', name])
-
-
 def main():
-    images = defaultdict(list)
-    for image in root.iterdir():
-        if not image.is_dir():
-            continue
-        for tag in image.iterdir():
-            if not tag.is_dir():
-                continue
-            if (tag / 'Dockerfile').exists():
-                images[image.name].append(tag.name)
-    build(images)
+    image, tag = sys.argv[1].split(':', 1)
+    name = image_name(image, tag)
+    print(f"Building {name}")
+    subprocess.check_call([DOCKER, 'build', (root / image / tag).resolve(), f'--tag={name}'])
+    if '--push' in sys.argv:
+        subprocess.check_call([DOCKER, 'push', name])
+        subprocess.check_call([DOCKER, 'rmi', name])
 
 
 if __name__ == '__main__':
